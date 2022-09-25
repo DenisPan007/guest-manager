@@ -1,4 +1,4 @@
-package statistic.guests;
+package statistic.guests.dto;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -11,4 +11,5 @@ import lombok.ToString;
 @ToString
 public class GuestDto {
     private String name;
+    private String favoriteColor;
 }

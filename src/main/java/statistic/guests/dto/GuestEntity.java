@@ -1,10 +1,9 @@
-package statistic.guests;
+package statistic.guests.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @Entity
 @Getter
@@ -17,4 +16,7 @@ public class GuestEntity {
 
     @Column
     String name;
+
+    @Column
+    String params;
 }
