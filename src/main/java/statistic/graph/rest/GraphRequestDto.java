@@ -9,5 +9,5 @@ import java.util.List;
 @Getter
 public class GraphRequestDto {
     private List<String> filters;
-    private int _filters;
+    private String type;
 }
