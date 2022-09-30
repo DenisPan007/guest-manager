@@ -2,42 +2,48 @@ function loadGraph(axisArrays){
     console.log(axisArrays);
 
 	xArray = axisArrays.xarray;
-	yArray = axisArrays.yarray
-console.log(xArray);
+	yArray = axisArrays.yarray;
+	title = axisArrays.name
+    console.log(xArray);
 
-        const ctx = document.getElementById('histogram').getContext('2d');
+    var points = getPoints(xArray, yArray);
 
-const chart = new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: xArray,
-    datasets: [{
-      label: 'Number of Arrivals',
-      data: yArray,
-      backgroundColor: 'blue',
-    }]
-  },
-  options: {
-    scales: {
-      xAxes: [{
-        display: false,
-        barPercentage: 1.3,
-        ticks: {
-          max: 3,
-        }
-      }, {
-        display: true,
-        ticks: {
-          autoSkip: false,
-          max: 4,
-        }
-      }],
-      yAxes: [{
-        ticks: {
-          beginAtZero: true
-        }
-      }]
-    }
-  }
-});
+    console.log(points);
+
+    var chart = createChart(title, points);
+    chart.render();
 };
+
+function createChart(title, points){
+    return new CanvasJS.Chart("chartContainer", {
+                      title:{
+                            text: title
+                      },
+                      axisY:{
+                       interval: 1,
+                       title: "Кол-во человек",
+                      },
+                      data: [
+                      {
+                          type: "column",
+                          color: "#42AAFF",
+                          dataPoints: points
+                      }
+                      ],
+                       exportEnabled: true
+    })
+ ;}
+
+function getPoints(xArray, yArray){
+    var length = xArray.length;
+    var points = [];
+
+    for(i = 0; i < length; i++) {
+        xEl = xArray[i];
+        yEl = yArray[i];
+
+         points.push({'label': xEl, 'y': yEl})
+    }
+
+    return points;
+}

@@ -8,7 +8,7 @@ import java.util.List;
 @Getter
 @Setter
 public class GraphResponseDto {
-    private String name = "TestResponse";
+    private String name = "Ты не должен видеть этот тескт в браузере";
     private List<String> xArray;
     private List<Integer> yArray;
 

@@ -28,6 +28,7 @@ public class GraphCalculator {
         GraphResponseDto graphResponseDto = new GraphResponseDto();
         graphResponseDto.setXArray(xArray);
         graphResponseDto.setYArray(yArray);
+        graphResponseDto.setName(type.getTitle());
         return graphResponseDto;
     }
 

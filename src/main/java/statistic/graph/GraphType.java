@@ -1,13 +1,15 @@
 package statistic.graph;
 
 public enum GraphType {
-    Color("color"),
-    Name("name");
+    Color("color", "Любимый цвет"),
+    Name("name", "Имя");
 
     private final String value;
+    private final String title;
 
-    GraphType(String value) {
+    GraphType(String value, String title) {
         this.value = value;
+        this.title = title;
     }
 
     public static GraphType fromString(String text) {
@@ -17,6 +19,10 @@ public enum GraphType {
             }
         }
         throw new RuntimeException("There isn't enum of value: " + text);
+    }
+
+    public String getTitle(){
+        return title;
     }
 
     @Override
