@@ -12,13 +12,13 @@ import java.util.stream.Collectors;
 @Service
 public class GraphCalculator {
     @Autowired
-    private Map<String, GuestFieldSelector> functionsMap;
+    private Map<String, GuestFieldSelector> fieldSelectorMap;
 
     public GraphResponseDto calculate(List<GuestDto> guests, GraphType type) {
 
-        GuestFieldSelector guestDtoGuestFieldSelectorFunction = functionsMap.get(type.toString());
+        GuestFieldSelector guestDtoGuestFieldSelector = fieldSelectorMap.get(type.toString());
         var values = guests.stream()
-        .map(guestDtoGuestFieldSelectorFunction::getField)
+        .map(guestDtoGuestFieldSelector::getField)
                 .collect(Collectors.toList());
         var map = getAxisMap(values);
 
