@@ -17,7 +17,7 @@ public class GuestMapper {
             var params = mapper.readValue(entity.getParams(), GuestParams.class);
             return GuestDto.builder()
                     .name(entity.getName())
-                    .favoriteColor(params.getFavoriteColor())
+                    .params(params)
                     .build();
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);

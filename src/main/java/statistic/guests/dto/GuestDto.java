@@ -11,5 +11,5 @@ import lombok.ToString;
 @ToString
 public class GuestDto {
     private String name;
-    private String favoriteColor;
+    private GuestParams params;
 }

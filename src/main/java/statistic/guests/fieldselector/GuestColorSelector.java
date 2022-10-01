@@ -6,6 +6,6 @@ import statistic.guests.dto.GuestDto;
 @Component("color")
 public class GuestColorSelector implements GuestFieldSelector {
     public String getField(GuestDto dto){
-        return dto.getFavoriteColor();
+        return dto.getParams().getFavoriteColor();
     }
 }

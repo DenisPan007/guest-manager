@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import statistic.guests.dto.GuestDto;
+import statistic.guests.dto.GuestParams;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,22 +18,10 @@ class GraphCalculatorTest {
 
     @Test
     void calculate() {
-        var g1 = GuestDto.builder()
-                .name("Alena")
-                .favoriteColor("white")
-                .build();
-        var g2 = GuestDto.builder()
-                .name("Denis")
-                .favoriteColor("blue")
-                .build();
-        var g3 = GuestDto.builder()
-                .name("Roma")
-                .favoriteColor("blue")
-                .build();
-        var g4 = GuestDto.builder()
-                .name("Dima")
-                .favoriteColor("black")
-                .build();
+        var g1 = buildGuestWithColor("Alena", "white");
+        var g2 = buildGuestWithColor("Denis", "blue");
+        var g3 = buildGuestWithColor("Roma", "blue");
+        var g4 = buildGuestWithColor("Dima", "black");
 
         var expectedXArray = new ArrayList<>(List.of("black", "blue", "white"));
         var expectedYArray = List.of(1, 2, 1);
@@ -41,5 +30,14 @@ class GraphCalculatorTest {
         assertArrayEquals(expectedXArray.toArray(), res.getXArray().toArray());
         assertArrayEquals(expectedYArray.toArray(), res.getYArray().toArray());
 
+    }
+
+    private GuestDto buildGuestWithColor(String name, String color) {
+        return GuestDto.builder()
+                .name(name)
+                .params(GuestParams.builder()
+                .favoriteColor(color)
+                .build())
+                .build();
     }
 }
