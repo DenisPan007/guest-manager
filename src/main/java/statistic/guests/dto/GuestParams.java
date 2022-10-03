@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
+import java.time.LocalDate;
+
 @Getter
 @Builder
 @NoArgsConstructor
@@ -16,4 +19,9 @@ public class GuestParams {
 
     @JsonProperty("movie")
     String movie;
+
+    String sex;
+
+    @JsonProperty("table")
+    Integer tableNumber;
 }
