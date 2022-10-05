@@ -18,14 +18,14 @@ public class GraphDispatcherController {
     List<GuestFilter> filters;
 
     @GetMapping
-    @RequestMapping("/stat")
+    @RequestMapping("/")
     public String getGraph(Model model) {
         model.addAttribute("filters", filters);
         model.addAttribute("types", getTypes());
 
         model.addAttribute("payload", new GraphRequestDto());
 
-        return "stat";
+        return "index";
     }
 
     private List<String> getTypes() {

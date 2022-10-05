@@ -3,6 +3,7 @@ package statistic.graph;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import statistic.guests.dto.SexEnum;
 import statistic.guests.filter.FemaleFilter;
 import statistic.guests.filter.MaleFilter;
 import statistic.guests.dto.GuestDto;
@@ -24,11 +25,11 @@ class GraphServiceTest {
         var maleFilter = new MaleFilter();
         var femaleFilter = new FemaleFilter();
 
-        var g1 = getTestSexFilterGuest("g1", "male");
-        var g2 = getTestSexFilterGuest("g2", "male");
-        var g3 = getTestSexFilterGuest("g3", "female");
-        var g4 = getTestSexFilterGuest("g4", "female");
-        var g5 = getTestSexFilterGuest("g5", "female");
+        var g1 = getTestSexFilterGuest("g1", SexEnum.Male);
+        var g2 = getTestSexFilterGuest("g2", SexEnum.Male);
+        var g3 = getTestSexFilterGuest("g3", SexEnum.Female);
+        var g4 = getTestSexFilterGuest("g4", SexEnum.Female);
+        var g5 = getTestSexFilterGuest("g5", SexEnum.Female);
 
         var guests = List.of(g1, g2, g3, g4, g5);
 
@@ -47,11 +48,11 @@ class GraphServiceTest {
         var femaleFilter = new FemaleFilter();
         var table1Filter = new TableOneFilter();
 
-        var g1 = getTestCrossFilterGuest("g1", "male", 1);
-        var g2 = getTestCrossFilterGuest("g2", "male", 1);
-        var g3 = getTestCrossFilterGuest("g3", "female", 1);
-        var g4 = getTestCrossFilterGuest("g4", "female", 3);
-        var g5 = getTestCrossFilterGuest("g5", "female", 4);
+        var g1 = getTestCrossFilterGuest("g1", SexEnum.Male, 1);
+        var g2 = getTestCrossFilterGuest("g2", SexEnum.Male, 1);
+        var g3 = getTestCrossFilterGuest("g3", SexEnum.Female, 1);
+        var g4 = getTestCrossFilterGuest("g4", SexEnum.Female, 3);
+        var g5 = getTestCrossFilterGuest("g5", SexEnum.Female, 4);
 
         var guests = List.of(g1, g2, g3, g4, g5);
 
@@ -64,7 +65,7 @@ class GraphServiceTest {
         assertEquals(3, filteredAll.size());
     }
 
-    private GuestDto getTestSexFilterGuest(String name, String sex) {
+    private GuestDto getTestSexFilterGuest(String name, SexEnum sex) {
         return GuestDto.builder()
                 .name(name)
                 .params(GuestParams.builder()
@@ -73,7 +74,7 @@ class GraphServiceTest {
                 .build();
     }
 
-    private GuestDto getTestCrossFilterGuest(String name, String sex, Integer table) {
+    private GuestDto getTestCrossFilterGuest(String name, SexEnum sex, Integer table) {
         return GuestDto.builder()
                 .name(name)
                 .params(GuestParams.builder()

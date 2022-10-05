@@ -29,20 +29,19 @@ public class GraphService {
     private GuestMapper mapper;
 
     public GraphResponseDto getGraph(GraphType type, List<String> filterNames) {
+        List<GuestDto> filteredGuests = findGuests(filterNames);
+        GraphResponseDto res = calculator.calculate(filteredGuests, type);
+        res.setGuests(filteredGuests);
+        return res;
+    }
+
+    private List<GuestDto> findGuests(List<String> filterNames) {
         var allGuests = guestRepository.findAll()
                 .stream()
                 .map(mapper::map)
                 .collect(Collectors.toList());
 
-        var filteredGuests = findGuests(getFilters(filterNames), allGuests);
-        return calculator.calculate(filteredGuests, type);
-    }
-
-    List<GuestFilter> getFilters(List<String> filterNames) {
-        return filterNames.stream()
-                .map(guestFilterMap::get)
-                .filter(Objects::nonNull)
-                .collect(Collectors.toList());
+        return findGuests(getFilters(filterNames), allGuests);
     }
 
     List<GuestDto> findGuests(List<GuestFilter> filters, List<GuestDto> allGuests) {
@@ -58,6 +57,13 @@ public class GraphService {
         }
 
         return filteredGuestsTemp;
+    }
+
+    List<GuestFilter> getFilters(List<String> filterNames) {
+        return filterNames.stream()
+                .map(guestFilterMap::get)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
     }
 
     private List<GuestDto> filterWithinOneGroup(List<GuestFilter> filters, List<GuestDto> allGuests) {

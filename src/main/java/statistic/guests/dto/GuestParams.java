@@ -20,7 +20,7 @@ public class GuestParams {
     @JsonProperty("movie")
     String movie;
 
-    String sex;
+    SexEnum sex;
 
     @JsonProperty("table")
     Integer tableNumber;

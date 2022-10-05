@@ -1,8 +1,8 @@
 package statistic.graph;
 
 public enum GraphType {
-    Color("color", "Любимый цвет"),
-    Name("movie", "Фильм или Сериал");
+    Color("цвет", "Любимый цвет"),
+    Name("фильм/сериал", "Фильм или Сериал");
 
     private final String value;
     private final String title;

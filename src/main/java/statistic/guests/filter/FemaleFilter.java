@@ -2,13 +2,14 @@ package statistic.guests.filter;
 
 import org.springframework.stereotype.Component;
 import statistic.guests.dto.GuestDto;
+import statistic.guests.dto.SexEnum;
 
 @Component("женщины")
 public class FemaleFilter implements GuestFilter {
 
     @Override
     public boolean filter(GuestDto dto) {
-        return "female".equals(dto.getParams().getSex());
+        return SexEnum.Female.equals(dto.getParams().getSex());
     }
 
     @Override
