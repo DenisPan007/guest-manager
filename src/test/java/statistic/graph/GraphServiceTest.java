@@ -8,7 +8,7 @@ import statistic.guests.filter.FemaleFilter;
 import statistic.guests.filter.MaleFilter;
 import statistic.guests.dto.GuestDto;
 import statistic.guests.dto.GuestParams;
-import statistic.guests.filter.TableOneFilter;
+import statistic.guests.filter.table.TableOneFilter;
 
 import java.util.List;
 
