@@ -10,6 +10,8 @@ import statistic.graph.GraphType;
 import statistic.guests.filter.GuestFilter;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Controller
 @RequiredArgsConstructor
@@ -29,7 +31,9 @@ public class GraphDispatcherController {
     }
 
     private List<String> getTypes() {
-        return List.of(GraphType.Color.toString(), GraphType.Name.toString());
+        return Stream.of(GraphType.values())
+                .map(GraphType::toString)
+                .collect(Collectors.toList());
     }
 }
 

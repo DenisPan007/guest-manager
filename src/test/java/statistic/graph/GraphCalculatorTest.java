@@ -25,7 +25,7 @@ class GraphCalculatorTest {
 
         var expectedXArray = new ArrayList<>(List.of("black", "blue", "white"));
         var expectedYArray = List.of(1, 2, 1);
-        var res = calculator.calculate(List.of(g1, g2, g3, g4), GraphType.Color);
+        var res = calculator.calculate(List.of(g1, g2, g3, g4), GraphType.COLOR);
 
         assertArrayEquals(expectedXArray.toArray(), res.getXArray().toArray());
         assertArrayEquals(expectedYArray.toArray(), res.getYArray().toArray());

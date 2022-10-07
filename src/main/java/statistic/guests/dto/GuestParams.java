@@ -6,9 +6,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import java.time.LocalDate;
-
 @Getter
 @Builder
 @NoArgsConstructor
@@ -24,4 +21,7 @@ public class GuestParams {
 
     @JsonProperty("table")
     Integer tableNumber;
+
+    @JsonProperty("subject")
+    String schoolSubject;
 }
