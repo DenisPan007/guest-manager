@@ -31,6 +31,16 @@ public class GuestParams {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
     LocalDate birth;
 
+    @JsonProperty("music")
+    String musicType;
+
+    String animal;
+
+    String dish;
+
+    String drink;
+
+
     public String getAge() {
         return String.valueOf(countAge(LocalDate.now().toEpochDay(), birth.toEpochDay()));
     }
