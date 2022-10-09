@@ -3,7 +3,8 @@ package statistic.graph;
 public enum GraphType {
     COLOR("цвет", "Любимый цвет"),
     SCHOOL_SUBJECT("предмет", "Школьный предмет"),
-    NAME("фильм/сериал", "Фильм или Сериал");
+    NAME("фильм/сериал", "Фильм или Сериал"),
+    AGE("возраст", "Возраст");
 
     private final String value;
     private final String title;

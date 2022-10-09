@@ -1,10 +1,13 @@
 package statistic.guests.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
 
 @Getter
 @Builder
@@ -24,4 +27,15 @@ public class GuestParams {
 
     @JsonProperty("subject")
     String schoolSubject;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
+    LocalDate birth;
+
+    public String getAge() {
+        return String.valueOf(countAge(LocalDate.now().toEpochDay(), birth.toEpochDay()));
+    }
+
+    private long countAge(long dayEpochNow, long dayEpochBirth) {
+        return Math.round(Math.floor((dayEpochNow - dayEpochBirth) / 365.25));
+    }
 }

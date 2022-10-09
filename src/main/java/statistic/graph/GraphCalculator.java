@@ -2,6 +2,8 @@ package statistic.graph;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import statistic.graph.datamodifier.GraphDataModifier;
+import statistic.graph.datamodifier.GraphDataModifierDoNothing;
 import statistic.graph.rest.GraphResponseDto;
 import statistic.guests.fieldselector.GuestFieldSelector;
 import statistic.guests.dto.GuestDto;
@@ -12,14 +14,17 @@ import java.util.stream.Collectors;
 @Service
 public class GraphCalculator {
     @Autowired
-    private Map<String, GuestFieldSelector> fieldSelectorMap;
+    private Map<String, GuestFieldSelector> fieldSelectorsMap;
+
+    @Autowired
+    private Map<String, GraphDataModifier> responseModifiersMap;
 
     public GraphResponseDto calculate(List<GuestDto> guests, GraphType type) {
 
-        GuestFieldSelector guestDtoGuestFieldSelector = fieldSelectorMap.get(type.toString());
-        var values = guests.stream()
-        .map(guestDtoGuestFieldSelector::getField)
-                .collect(Collectors.toList());
+        GuestFieldSelector guestDtoGuestFieldSelector = fieldSelectorsMap.get(type.toString());
+        var modifier = responseModifiersMap.getOrDefault(type.toString() + "-мод",new GraphDataModifierDoNothing());
+
+        var values = getValues(guests, guestDtoGuestFieldSelector);
         var map = getAxisMap(values);
 
         var xArray = new ArrayList<>(map.keySet());
@@ -29,7 +34,13 @@ public class GraphCalculator {
         graphResponseDto.setXArray(xArray);
         graphResponseDto.setYArray(yArray);
         graphResponseDto.setName(type.getTitle());
-        return graphResponseDto;
+        return modifier.modify(graphResponseDto);
+    }
+
+    private List<String> getValues(List<GuestDto> guests, GuestFieldSelector guestDtoGuestFieldSelector) {
+        return guests.stream()
+        .map(guestDtoGuestFieldSelector::getField)
+                .collect(Collectors.toList());
     }
 
     private  Map<String, Integer> getAxisMap(List<String> values) {
