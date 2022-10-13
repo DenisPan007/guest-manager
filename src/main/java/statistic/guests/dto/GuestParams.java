@@ -27,7 +27,6 @@ public class GuestParams {
 
     @JsonProperty("subject")
     String schoolSubject;
-
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
     LocalDate birth;
 
@@ -40,6 +39,19 @@ public class GuestParams {
 
     String drink;
 
+    String hobby;
+
+    @JsonProperty("island")
+    String islandSubject;
+
+    String job;
+
+    @JsonProperty("pets")
+    String petsNumber;
+
+    String superAbility;
+
+    String randomNumber;
 
     public String getAge() {
         return String.valueOf(countAge(LocalDate.now().toEpochDay(), birth.toEpochDay()));
