@@ -19,6 +19,7 @@ function createChart(title, points){
                       title:{
                             text: title
                       },
+                      zoomEnabled: true,
                       axisY:{
                        interval: 1,
                        title: "Кол-во человек",
