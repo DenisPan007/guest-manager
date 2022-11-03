@@ -3,6 +3,7 @@ function loadGraph(axisArrays){
 
 	xArray = axisArrays.xarray;
 	yArray = axisArrays.yarray;
+	label = axisArrays.label;
 	title = axisArrays.name
     console.log(xArray);
 
@@ -10,11 +11,11 @@ function loadGraph(axisArrays){
 
     console.log(points);
 
-    var chart = createChart(title, points);
+    var chart = createChart(title, points, label);
     chart.render();
 };
 
-function createChart(title, points){
+function createChart(title, points, label){
     return new CanvasJS.Chart("chartContainer", {
                       title:{
                             text: title
@@ -24,11 +25,20 @@ function createChart(title, points){
                        interval: 1,
                        title: "Кол-во человек",
                       },
+                       legend:{
+                        fontSize: 30,
+                        fontFamily: "tamoha",
+                        fontColor: "Sienna",
+                        horizontalAlign: "center", // left, center ,right
+                        verticalAlign: "top",  // top, center, bottom
+                       },
                       data: [
                       {
                           type: "column",
                           color: "#42AAFF",
-                          dataPoints: points
+                          dataPoints: points,
+                          showInLegend: true,
+                          legendText: label,
                       }
                       ],
                        exportEnabled: true

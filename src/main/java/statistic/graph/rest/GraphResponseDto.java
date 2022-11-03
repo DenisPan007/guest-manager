@@ -13,5 +13,6 @@ public class GraphResponseDto {
     private List<String> xArray;
     private List<Integer> yArray;
     private List<GuestDto> guests;
+    private String label;
 
 }

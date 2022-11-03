@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 import statistic.graph.GraphService;
 import statistic.graph.GraphType;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequiredArgsConstructor
 public class GraphRestController {
@@ -18,7 +21,13 @@ public class GraphRestController {
     @PostMapping
     @RequestMapping("/graph")
     public GraphResponseDto getGraph(@RequestBody GraphRequestDto request) {
-        return service.getGraph(GraphType.fromString(request.getType()), request.getFilters());
+        GraphResponseDto graph = service.getGraph(GraphType.fromString(request.getType()), request.getFilters());
+        graph.setLabel(buildLAbelByFilters(request.getFilters()));
+        return graph;
+    }
+
+    private String buildLAbelByFilters(List<String> filters){
+       return String.join(", ", filters);
     }
 
 
